@@ -14,21 +14,13 @@ class AddNotes extends StatelessWidget {
   AddNotes({super.key});
 
   void saveNote(context) {
-    //store user entered data into hive storage
+    //store user entered data into local storage
     final myobj = NotesModel(noteTitle: _title.text, noteBody: _body.text);
 
     myBox.add(myobj);
 
     myobj.save();
     Navigator.of(context).pop();
-  }
-
-  showToast(context, message) {
-    final snackBar = SnackBar(
-      content: Text(message),
-    );
-
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
@@ -69,7 +61,7 @@ class AddNotes extends StatelessWidget {
             ),
             TextField(
               controller: _body,
-              minLines: 6,
+              minLines: 2,
               maxLines: null,
               decoration: const InputDecoration(
                   hintText: " Note",
